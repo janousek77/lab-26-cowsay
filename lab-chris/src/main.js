@@ -1,5 +1,6 @@
 import './style/main.scss'
 import cowsay from 'cowsay-browser'
+import faker from 'faker'
 import React from 'react'
 import ReactDom from 'react-dom'
 
@@ -20,16 +21,31 @@ class Navbar extends React.Component {
 class App extends React.Component {
   constructor(props){
     super(props)
+    this.state = {
+      text: 'this should change',
+    }
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+
+  handleClick(e){
+    this.setState((state) => {
+      return {
+        text: faker.lorem.words(15)
+      }
+    })
   }
 
   render(){
-    return(
-      <Navbar />
-      // cowsay.say({
-	    //  text : "I'm a moooodule",
-	    //  e : "oO",
-	    //  T : "U "
-      // })
+    return (
+      <div>
+        <Navbar />
+        <pre>
+          {cowsay.say({ text: this.state.text, e: 'oO', T: 'U' })}
+        </pre>
+        <button onClick={this.handleClick}>Click Me</button>
+      </div>
     )
   }
 }
