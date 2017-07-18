@@ -22,7 +22,7 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      text: 'this should change',
+      content: 'this should change',
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -32,7 +32,7 @@ class App extends React.Component {
   handleClick(e){
     this.setState((state) => {
       return {
-        text: faker.lorem.words(15)
+        content: faker.lorem.words(15)
       }
     })
   }
@@ -42,7 +42,7 @@ class App extends React.Component {
       <div>
         <Navbar />
         <pre>
-          {cowsay.say({ text: this.state.text, e: 'oO', T: 'U' })}
+          {cowsay.say({ text: this.state.content, e: 'oO', T: 'U' })}
         </pre>
         <button onClick={this.handleClick}>Click Me</button>
       </div>
